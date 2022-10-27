@@ -1,7 +1,17 @@
-{{page-title "EmberStableIdentifier"}}
+{{page-title "Example"}}
 
-{{!-- The following component displays Ember's default welcome message. --}}
-<WelcomePage />
-{{!-- Feel free to remove this! --}}
+{{#each this.books as |book|}}
+  <div class="book">
+    {{book.title}}
+    <button type="button" {{on "click" (fn this.addPage book)}}>Add page</button>
+    {{book.hasSomePages}}
+    <div style="margin-left: 20px;">
+      {{#each book.sortedPages as |bookPage|}}
+        <div>{{bookPage.pageNumber}} <button type="button" title="deleteRecord" {{on "click" (fn this.removePage bookPage)}}>x</button></div>
+      {{/each}}
+    </div>
+    <button type="button" {{on "click" (fn this.addPage book)}}>Add page</button>
+  </div>
+{{/each}}
 
 {{outlet}}
