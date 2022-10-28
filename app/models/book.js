@@ -7,7 +7,7 @@ export default class BookModel extends Model {
   bookPages;
   
   get sortedPages() {
-    return this.bookPages.filter((x) => x.pageNumber > 2000).sortBy('pageNumber');
+    return this.bookPages.filter((x) => !x.isDeleted).sortBy('pageNumber');
   }
   
   get hasSomePages() {

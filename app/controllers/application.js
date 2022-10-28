@@ -13,7 +13,7 @@ export default class ApplicationController extends Controller {
     
     const data = [];
     
-    for (let i = 1; i <= 2399; i++) {
+    for (let i = 1; i <= 10; i++) {
       this.store.push({
         data: {
           id: i + '',
@@ -58,7 +58,10 @@ export default class ApplicationController extends Controller {
   }
   
   @action
-  async removePage(bookPage) {
-    await bookPage.destroyRecord();
+  async removePage(bookPage, book) {
+    const result = book.sortedPages.find((x) => x.pageNumber === bookPage.pageNumber);
+    await result.destroyRecord();
+    
+    console.log(result);
   }
 }
