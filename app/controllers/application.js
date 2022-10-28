@@ -60,7 +60,7 @@ export default class ApplicationController extends Controller {
   @action
   async removePage(bookPage, book) {
     const result = book.sortedPages.find((x) => x.pageNumber === bookPage.pageNumber);
-    await result.destroyRecord();
+    await result.deleteRecord();
     
     console.log(result);
   }
